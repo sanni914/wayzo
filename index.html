@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <title>Wayzo — Plan, Discover, Book Every Mile</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav-wrap">
+      <div class="brand">Wayzo</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Hotels</a>
+        <a href="#">Experiences</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="tagline">Book stays & discover fun on the way</div>
+  </header>
+
+  <section class="hero">
+    <h1>Discover more,<span> every mile</span></h1>
+    <p class="hero-sub">Find the best places, plan your journey, and book hotels instantly with Wayzo.</p>
+  </section>
+
+  <main class="container">
+    <section class="controls">
+      <h2>Plan Your Route</h2>
+      <label>Start</label>
+      <input id="startInput" class="auto-location" placeholder="Enter start city..." autocomplete="off">
+      <ul class="suggestion-list" id="startSuggest"></ul>
+      <label>Destination</label>
+      <input id="destInput" class="auto-location" placeholder="Enter destination..." autocomplete="off">
+      <ul class="suggestion-list" id="destSuggest"></ul>
+      <button id="findBtn">Find Route</button>
+      <div id="status" class="status"></div>
+    </section>
+    <section class="mapwrap">
+      <div id="map" class="map"></div>
+    </section>
+    <aside class="sidebar">
+      <h3>Places Along Your Route</h3>
+      <div id="placesList" class="places-list"></div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Wayzo | Make every mile memorable.</span>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
