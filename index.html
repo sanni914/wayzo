@@ -1,59 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>Wayzo — Plan, Discover, Book Every Mile</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wayzo — Discover More, Every Mile</title>
+
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="nav-wrap">
-      <div class="brand">Wayzo</div>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Hotels</a>
-        <a href="#">Experiences</a>
-        <a href="#">Contact</a>
-      </nav>
+
+    <div class="brand-wrap">
+  
+      <div class="logo">
+        <span class="logo-glow">W</span>
+      </div>
+  
+      <div class="brand-text">
+  
+        <h1 class="brand-name glow-text">
+          Wayzo
+        </h1>
+  
+        <p class="brand-tag typing-text">
+          Discover hidden journeys, every mile
+        </p>
+  
+      </div>
+  
     </div>
-    <div class="tagline">Book stays & discover fun on the way</div>
+
+  <button id="themeToggle" class="premium-btn">
+    🌙 Dark Mode
+  </button>
+
+</div>
+    <div class="top-controls">
+      <label class="small">Distance filter</label>
+      <select id="distanceFilter" class="select">
+        <option value="20">Within 20 km</option>
+        <option value="50">Within 50 km</option>
+      </select>
+
+
+      <label class="small">Extras</label>
+      <label class="toggle"><input id="toggleFuel" type="checkbox" /> Show fuel pumps</label>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Discover more,<span> every mile</span></h1>
-    <p class="hero-sub">Find the best places, plan your journey, and book hotels instantly with Wayzo.</p>
-  </section>
+  <main class="page">
+    <section class="leftpanel">
+      <div class="card">
+        <h3>Plan your route</h3>
+        <div class="field">
+          <input id="startInput" placeholder="Start: e.g., Davanagere" autocomplete="off" />
+          <ul id="startSuggest" class="suggestions"></ul>
+        </div>
+        <div class="field">
+          <input id="destInput" placeholder="Destination: e.g., Bengaluru" autocomplete="off" />
+          <ul id="destSuggest" class="suggestions"></ul>
+        </div>
 
-  <main class="container">
-    <section class="controls">
-      <h2>Plan Your Route</h2>
-      <label>Start</label>
-      <input id="startInput" class="auto-location" placeholder="Enter start city..." autocomplete="off">
-      <ul class="suggestion-list" id="startSuggest"></ul>
-      <label>Destination</label>
-      <input id="destInput" class="auto-location" placeholder="Enter destination..." autocomplete="off">
-      <ul class="suggestion-list" id="destSuggest"></ul>
-      <button id="findBtn">Find Route</button>
-      <div id="status" class="status"></div>
+        <div class="row">
+          <button id="findBtn" class="btn primary">Find Shortest Route</button>
+          <button id="clearBtn" class="btn ghost">Clear</button>
+        </div>
+
+        <div id="status" class="status">Enter start & destination, then click Find Shortest Route.</div>
+      </div>
+
+      <div class="card results-card">
+        <h4>Places along route</h4>
+        <div id="placesList" class="places-list"></div>
+      </div>
     </section>
-    <section class="mapwrap">
+
+    <section class="mapsection">
       <div id="map" class="map"></div>
     </section>
-    <aside class="sidebar">
-      <h3>Places Along Your Route</h3>
-      <div id="placesList" class="places-list"></div>
-    </aside>
+
+    <section class="rightpanel">
+      <div class="card">
+        <h4>Highlights</h4>
+        <p class="muted">Tourist & temple places are shown above. Hotels & lodges are below. Use the distance filter to widen your search.</p>
+        <div class="feature">
+          <div class="feature-title">Fuel Pumps</div>
+          <div class="feature-desc">Toggle to display fuel pumps along the route for refuel stops.</div>
+        </div>
+      </div>
+
+      <div class="card about">
+        <h4>Wayzo — Brand</h4>
+        <p class="muted">Designed for road travellers. Lightweight, fast, and focused on real-route discoveries.</p>
+        <p class="muted small">For real images, we use Google Places Photos API.</p>
+
+        <div class="support-box">
+          <p>💡 <strong>Support this project:</strong></p>
+          <p>✉️ <a href="mailto:santech914@gmail.com">santech914@gmail.com</a></p>
+          <p class="update-note">⚠️ The site is still under development and being updated regularly.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <span>© <span id="year"></span> Wayzo | Make every mile memorable.</span>
+    © <span id="year"></span> Wayzo — Discover more, every mile<br>
+    💙 Built with passion by <strong>Sanni</strong> | Wayzo Project
   </footer>
 
+  <!-- Leaflet JS libs -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+  <!-- App JS -->
   <script src="js/app.js"></script>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
