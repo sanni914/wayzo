@@ -23,7 +23,7 @@
 
 (async function () {
   // ---------- CONFIG ----------
-  const GOOGLE_API_KEY = "AIzaSyBLyg68wZGvE_zG2BtM9mO3dwfxcMYUkL0"; // <<-- REPLACE
+  const GOOGLE_API_KEY = " "; // <<-- REPLACE
   const OSRM_ROUTER = 'https://router.project-osrm.org/route/v1';
   const overpassBase = 'https://overpass-api.de/api/interpreter';
   const placeholderImg = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
